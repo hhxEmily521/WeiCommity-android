@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">音乐微协作</string>
+    <!--<string name="Connection">http://www.uryuohamusta.tech:8080/api/</string>-->
+    <!--<string name="Connection">http://192.168.43.177:8080/api/</string>-->
+    <!--<string name="Connection">http://172.19.175.153:8080/api/</string>-->
+    <string name="Connection">http://192.168.2.1:8080/api/</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_regist">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email/Tel/UserName</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">立即注册</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_field_TELOREMAIL">用户名必须大于四位</string>
+    <string name="error_invalid_password">请输入4-12位字符</string>
+    <string name="error_incorrect_password">密码不正确</string>
+    <string name="error_field_required">必填项</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="icons"> eae0</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

@@ -1,0 +1,29 @@
+<resources>
+    <!-- 全局字体样式-->
+    <style name="DefaultFontStyle">
+        <item name="android:textSize">18px</item>
+        <item name="android:textColor">#0000CC</item>
+    </style>
+    http://blog.csdn.net/qq_29134495/article/details/51400587
+    <!-- 全局背景色-->
+    <style name="DefaultBgColor" parent="@style/DefaultFontStyle">
+        <item name="android:background">#E5E5E5</item>
+    </style>
+
+    <!-- 全局样式-->
+    <style name="DefaultStyle" parent="@style/DefaultBgColor"></style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:background">#E5E5E5</item>
+        <item name="android:textColor">#0000CC</item>
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>
