@@ -16,42 +16,134 @@
 
         android:text="登陆我的微协作" />
 
-    <!--定义输入用户名的文本编辑框  -->
-    <EditText
-        android:id="@+id/et_name"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lableView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:hint="username"    />
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="30dp">
+            <com.sexample.emily.myapplication.base.IconFontTextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:paddingRight="15dp"
+                android:textSize="24dp"
+                android:paddingLeft="6dp"
+                android:textColor="#050505"
+                android:shadowColor="#99000000"
+                android:shadowRadius="2"
+                android:text="@string/icon_user" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_email"
+                android:inputType="textEmailAddress"
+                android:background="@null"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1.2dp"
+            android:background="@color/blue"></TextView>
+    </LinearLayout>
+
+    <!--定义输入用户名的文本编辑框  -->
+    <!--<EditText-->
+        <!--android:id="@+id/et_name"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/lableView"-->
+
+        <!--android:hint="@string/prompt_email"    />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp">
+
+            <com.sexample.emily.myapplication.base.IconFontTextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="6dp"
+                android:textSize="24dp"
+                android:textColor="#050505"
+                android:shadowColor="#99000000"
+                android:shadowRadius="2"
+                android:text="@string/icon_password" />
+
+            <EditText
+                android:id="@+id/et_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/prompt_password"
+                android:inputType="textPassword"
+                android:maxLines="1" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+
+            android:layout_height="1.2dp"
+
+            android:background="@color/blue"></TextView>
+    </LinearLayout>
+
+
+
+
 
     <!--定义输入密码的文本编辑框  -->
-    <EditText
-        android:id="@+id/et_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/et_name"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:hint="password"
-        android:inputType="textPassword" />
+    <!--<EditText-->
+        <!--android:id="@+id/et_pass"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="40dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:hint="password"-->
+        <!--android:inputType="textPassword" />-->
     <!--定义“注册”的按钮  -->
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/et_pass"
-        android:layout_alignParentRight="true"
-        android:text="注册" />
 
-    <!--定义“确定”的按钮，放在“取消”按钮的左边  -->
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/btn_register"
-        android:text="确定" />
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_marginTop="160dp">
+       <Button
+           android:id="@+id/btn_login"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@color/green"
+           android:text="登录" />
+       <!--style="@style/SmsButton"-->
+
+       <Button
+           android:id="@+id/btn_register"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@id/btn_login"
+           android:layout_centerHorizontal="true"
+           android:background="@null"
+       android:text="没有账号？注册一个吧" />
+
+       <!--定义“确定”的按钮，放在“取消”按钮的左边  -->
+
+   </RelativeLayout>
+
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="match_parent"

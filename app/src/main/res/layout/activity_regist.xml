@@ -50,6 +50,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+                <com.sexample.emily.myapplication.base.IconFontTextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="6dp"
+                    android:textSize="24dp"
+                    android:textColor="#050505"
+                    android:shadowColor="#99000000"
+                    android:shadowRadius="2"
+                    android:text="@string/icon_user" />
 
 
                 <android.support.design.widget.TextInputLayout
@@ -60,12 +74,37 @@
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@null"
                         android:hint="@string/prompt_email"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:singleLine="true" />
 
+
                 </android.support.design.widget.TextInputLayout>
+              </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+
+                    android:layout_height="1.2dp"
+
+                    android:background="@color/blue"></TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <com.sexample.emily.myapplication.base.IconFontTextView
+                    android:id="@+id/iconFontTextView"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="6dp"
+                    android:paddingTop="5dp"
+                    android:shadowColor="#99000000"
+                    android:shadowRadius="2"
+                    android:text="@string/icon_password"
+                    android:textColor="#050505"
+                    android:textSize="24dp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -80,18 +119,25 @@
                         android:imeActionLabel="@string/action_sign_in_short"
                         android:imeOptions="actionUnspecified"
                         android:inputType="textPassword"
+                        android:background="@null"
                         android:maxLines="1"
 
                         android:singleLine="true" />
 
                 </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
 
+                    android:layout_height="1.2dp"
+
+                    android:background="@color/blue"></TextView>
                 <Button
                     android:id="@+id/email_sign_in_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:background="@color/green"
                     android:text="@string/action_sign_in"
                     android:textStyle="bold" />

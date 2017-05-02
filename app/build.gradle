@@ -50,12 +50,13 @@ dependencies {
     compile group: 'org.json', name: 'json', version: '20160810'
 
 
+    compile group: 'com.j256.ormlite', name: 'ormlite-core', version: '5.0'
+    // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-android
+    compile group: 'com.j256.ormlite', name: 'ormlite-android', version: '5.0'
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'com.android.support:design:25.3.0'
     compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
-    compile group: 'com.j256.ormlite', name: 'ormlite-core', version: '5.0'
-    // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-android
-    compile group: 'com.j256.ormlite', name: 'ormlite-android', version: '5.0'
+    compile 'com.android.support:support-v4:25.3.0'
     testCompile 'junit:junit:4.12'
 }

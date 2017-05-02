@@ -13,21 +13,21 @@ import org.threeten.bp.LocalDate;
  */
 @DatabaseTable
 public class UserExtend {
-    @DatabaseField(columnName = "UUuid")
+    @DatabaseField
     private String UUuid;
-    @DatabaseField(columnName = "UUuid")
+    @DatabaseField
     private String UNackName;
 
 
-    @DatabaseField(columnName = "UUuid")
+    @DatabaseField
     private String USex;
-    @DatabaseField(columnName = "UUuid")
+    @DatabaseField
     private LocalDate UBirthday;
-    @DatabaseField(columnName = "UUuid")
+    @DatabaseField
     private String UTag;
-    @DatabaseField(columnName = "UUuid")
+    @DatabaseField
     private String USign;
-    @DatabaseField(columnName = "UUuid")
+    @DatabaseField
     private String UHeadImg;
     //外部类，外键。以主键关联
     @DatabaseField(foreign = true, foreignAutoRefresh = true)

@@ -36,14 +36,7 @@ public class Login {
         }
     }
 
-    public Login() {
-        this.UUuid = UUuid;
-        this.UPwd = UPwd;
-        this.UAName = UAName;
-        this.UTel = UTel;
-        this.UMail = UMail;
-        this.UAccStatus = UAccStatus;
-    }
+    public Login() {}
 
     //getter & setter
     public String getUUuid() {

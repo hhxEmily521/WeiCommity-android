@@ -87,7 +87,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(LoginActivity.this,RegistActivity.class);
+                intent.setClass(LoginActivity.this,ExRegistActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -263,36 +263,6 @@ public class LoginActivity extends Activity {
 
 
 
-//    public void loginByPost(String userName, String userPass) {
-//
-//                String retSrc = "";
-//                String path = "http://www.27442.com/login";
-//                JSONObject jsonObject = new JSONObject();
-//                HttpPost httpPost = new HttpPost(path);
-//            httpPost.setHeader("Content-Type",
-//                    "application/x-www-form-urlencoded; charset=utf-8");
-//
-//            try {
-//            //Post参数
-//                    jsonObject.put("userName","zhangsan");
-//                    jsonObject.put("passWord","123456");
-//
-//                    List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>();
-//                    nameValuePair.add(new BasicNameValuePair("param", jsonObject.toString()));
-//                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair,HTTP.UTF_8));
-//            //获取HttpClient对象
-//                    HttpClient httpClient = new DefaultHttpClient();
-//            // 获取HttpResponse实例
-//                    HttpResponse httpResp = httpClient.execute(httpPost);
-//                    retSrc = EntityUtils.toString(httpResp.getEntity());
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//          //  return retSrc;
-//
-//
-//
-//    }
 
 
 
@@ -312,62 +282,6 @@ public class LoginActivity extends Activity {
 
 
 
-
-
-
-//
-//
-//
-//    public void sendJsonToServer() {
-//        HttpGet httpClient = new DefaultHttpClient();
-//        try {
-//
-//            HttpPost httpPost = new HttpPost(constant.url);
-//            HttpParams httpParams = new BasicHttpParams();
-//            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>();
-//            Gson gson = new Gson();
-//            String str = gson.toJson(initData());
-//            nameValuePair.add(new BasicNameValuePair("jsonString", URLEncoder
-//                    .encode(str, "utf-8")));
-//            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
-//            httpPost.setParams(httpParams);
-//            Toast.makeText(Main.this, "发送的数据：\n" + str.toString(),
-//                    Toast.LENGTH_SHORT).show();
-//            httpClient.execute(httpPost);
-//            HttpResponse response = httpClient.execute(httpPost);
-//            StatusLine statusLine = response.getStatusLine();
-//            if (statusLine != null && statusLine.getStatusCode() == 200) {
-//                HttpEntity entity = response.getEntity();
-//                if (entity != null) {
-//                    Toast.makeText(
-//                            Main.this,
-//                            "服务器处理返回结果：" + readInputStream(entity.getContent()),
-//                            Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(Main.this, "没有返回相关数据", Toast.LENGTH_SHORT)
-//                            .show();
-//                }
-//            } else {
-//                Toast.makeText(Main.this, "发送失败，可能服务器忙，请稍后再试",
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    private static String readInputStream(InputStream is) throws IOException {
-//        if (is == null)
-//            return null;
-//        ByteArrayOutputStream bout = new ByteArrayOutputStream();
-//        int len = 0;
-//        byte[] buf = new byte[1024];
-//        while ((len = is.read(buf)) != -1) {
-//            bout.write(buf, 0, len);
-//        }
-//        is.close();
-//        return URLDecoder.decode(new String(bout.toByteArray()), "utf-8");
-//    }
     /**
      * POST请求操作
      *

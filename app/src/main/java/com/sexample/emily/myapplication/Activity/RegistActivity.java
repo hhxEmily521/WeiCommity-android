@@ -343,7 +343,7 @@ public class RegistActivity extends AppCompatActivity implements LoaderCallbacks
                         Toast.makeText(getBaseContext(), "注册成功", Toast.LENGTH_LONG).show();
                        // String thisUUid = (String) output.getClassObject();
                         //tym
-                        Intent intent = new Intent(RegistActivity.this, MainActivity.class);
+                        Intent intent = new Intent(RegistActivity.this, ExRegistActivity.class);
 //                        intent.putExtra("email", email);
 //                        intent.putExtra("thisUUid", thisUUid);
                         startActivity(intent);
@@ -435,7 +435,7 @@ public class RegistActivity extends AppCompatActivity implements LoaderCallbacks
            // mAuthTask.onPostExecute(true);
            // mAuthTask.execute((Void) null);
         }
-
+////////////////////////
 
     private boolean isEmailValid(String email) {
         if (null==email || "".equals(email)) return false;
