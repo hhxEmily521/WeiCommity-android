@@ -1,9 +1,12 @@
 package com.sexample.emily.myapplication.Activity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.provider.DocumentsContract;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,22 +26,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sexample.emily.myapplication.R;
 import com.sexample.emily.myapplication.Util.GetFromServer;
 import com.sexample.emily.myapplication.Util.HttpJson;
-import com.sexample.emily.myapplication.Util.MyAsyncTask;
-import com.sexample.emily.myapplication.ormlite.Bean.Login;
 import com.sexample.emily.myapplication.ormlite.dao.UserDao;
 
+import com.sexample.emily.myapplication.Util.MyAsyncTask;
+import com.sexample.emily.myapplication.ormlite.Bean.Login;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ExRegistActivity extends AppCompatActivity {
@@ -57,11 +64,13 @@ public class ExRegistActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
-
+    private int mYear;
+    private int mMonth;
+    private int mDay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_ex_regist);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -145,12 +154,59 @@ public class ExRegistActivity extends AppCompatActivity {
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
 
                 View rootView = inflater.inflate(R.layout.fragment_sub_regist_music, container, false);
-
                 return rootView;
             }
            if(getArguments().getInt(ARG_SECTION_NUMBER) == 2)
            {
+
                View rootView = inflater.inflate(R.layout.fragment_sub_regist_normal, container, false);
+               RadioButton radioButton_boy,radioButton_girl;
+               RadioGroup radioGroup=(RadioGroup)rootView.findViewById(R.id.radioGroup_sex_id);
+               radioButton_boy=(RadioButton)rootView.findViewById(R.id.boy_id);
+               radioButton_girl=(RadioButton)rootView.findViewById(R.id.girl_id);
+               DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+                   public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                       String msg = year + "-" + monthOfYear + "-" + dayOfMonth;
+                       Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+                       // updateDisplay();
+                   }
+               };
+
+               RadioGroup.OnCheckedChangeListener listen=new RadioGroup.OnCheckedChangeListener() {
+                   @Override
+                   public void onCheckedChanged(RadioGroup group, int checkedId) {
+                       int id=	group.getCheckedRadioButtonId();
+                       switch (group.getCheckedRadioButtonId()) {
+                           case R.id.girl_id:
+                               Toast.makeText(getActivity(), radioButton_girl.getText(), Toast.LENGTH_SHORT).show();
+                               break;
+                           case R.id.boy_id:
+                               Toast.makeText(getActivity(), radioButton_boy.getText(), Toast.LENGTH_SHORT).show();
+                               break;
+                       }
+
+                   }
+               };
+               radioGroup.setOnCheckedChangeListener(listen);
+               rootView.findViewById(R.id.tv_brithday).setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   new DatePickerDialog(getActivity(),mDateSetListener,1990, 5, 4).show();
+
+               }
+           });
+               rootView.findViewById(R.id.btn_submitbaseIfo).setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       Intent intent = new Intent(getActivity(), MainActivity.class);
+//                        intent.putExtra("email", email);
+//                        intent.putExtra("thisUUid", thisUUid);
+                       startActivity(intent);
+
+                   }
+               });
+
+
                return rootView;
            }else {
                 View rootView = inflater.inflate(R.layout.fragment_sub_regist_normal, container, false);
@@ -160,9 +216,20 @@ public class ExRegistActivity extends AppCompatActivity {
 
         }
 
-
-
     }
+
+
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    private void showDatePickerDialog() {
+//        DatePickerDialog datePickerDialog = new DatePickerDialog(ExRegistActivity.this,this,2017,5,4);
+//        datePickerDialog.show();
+//    }
+//
+//    // 回调监听实现
+//    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//        String msg = year + "-" + monthOfYear + "-" + dayOfMonth;
+//        Toast.makeText(ExRegistActivity.this, msg, Toast.LENGTH_LONG).show();
+//    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

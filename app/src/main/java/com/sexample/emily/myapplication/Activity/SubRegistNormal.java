@@ -85,19 +85,19 @@ public class SubRegistNormal extends Fragment {
 
         Imagebtn_PersonIcon = (ImageButton)view.findViewById(R.id.iv_personal_icon);
         btn_register= (Button)view.findViewById(R.id.email_sign_in_button);
-        camera= (RegistActivity) getActivity();
+
         Imagebtn_PersonIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("test", "onClick: fgsdrgsdgsdfgsdgsdgsdfgslalala");
-                  camera.showChoosePicDialog();
+
                 Toast.makeText(getActivity(), "用户名或者密码不能为空", Toast.LENGTH_LONG).show();
             }
         });
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                camera.showChoosePicDialog();
+
 
                 Toast.makeText(getActivity(), "用户名或者密码不能为空", Toast.LENGTH_LONG).show();
             }

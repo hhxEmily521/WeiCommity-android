@@ -42,6 +42,7 @@ import com.sexample.emily.myapplication.R;
 import com.sexample.emily.myapplication.Util.GetFromServer;
 import com.sexample.emily.myapplication.Util.HttpJson;
 import com.sexample.emily.myapplication.Util.MyAsyncTask;
+import com.sexample.emily.myapplication.Util.showChoosePic;
 import com.sexample.emily.myapplication.base.Utils;
 import com.sexample.emily.myapplication.ormlite.Bean.Login;
 import com.sexample.emily.myapplication.ormlite.dao.UserDao;
@@ -62,41 +63,25 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class RegistActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
+public class RegistActivity extends AppCompatActivity{
     private String imagePath=null;
     private String mRegistType=null;
     protected static Uri tempUri;
     DBHelper helper = new DBHelper(this);
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
+    private showChoosePic choosePic=new showChoosePic(this,RegistActivity.this);
 
-    // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
     private ImageView iv_personal_icon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -123,176 +108,38 @@ public class RegistActivity extends AppCompatActivity implements LoaderCallbacks
         Button btn_change = (Button) findViewById(R.id.btn_change);
         iv_personal_icon = (ImageView) findViewById(R.id.iv_personal_icon);
         btn_change.setOnClickListener(new OnClickListener() {
-
             @Override
-            public void onClick(View v) {
-                showChoosePicDialog();
+            public void onClick(View v) {  choosePic.showChoosePicDialog();
+                choosePic.setIv_personal_icon(iv_personal_icon);
+
             }
         });
     }
 
 
     /*showChoosePicDialog*/
-    protected void showChoosePicDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("设置头像");
-        String[] items = new String[]{"选择本地照片", "拍照"};
-        builder.setNegativeButton("取消", (android.content.DialogInterface.OnClickListener)null);
-        builder.setItems(items, new android.content.DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                switch(which) {
-                    case 0:
-                        Intent openAlbumIntent = new Intent("android.intent.action.GET_CONTENT");
-                        openAlbumIntent.setType("image/*");
-                        RegistActivity.this.startActivityForResult(openAlbumIntent, 0);
-                        break;
-                    case 1:
-                        Intent openCameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
-                        RegistActivity.tempUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "image.jpg"));
-                        openCameraIntent.putExtra("output", RegistActivity.tempUri);
-                        RegistActivity.this.startActivityForResult(openCameraIntent, 1);
-                }
-
-            }
-        });
-        builder.create().show();
-    }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //调用照片 以及获得保存的照片路径
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == -1) {
-            switch(requestCode) {
-                case 0:
-                    this.startPhotoZoom(data.getData());
-                    break;
-                case 1:
-                    this.startPhotoZoom(tempUri);
-                    break;
-                case 2:
-                    if(data != null) {
-                        this.setImageToView(data);
-                    }
-            }
-        }
-
+        imagePath = choosePic.onActivityResult(requestCode,resultCode,data);
     }
-
-    protected void startPhotoZoom(Uri uri) {
-        if(uri == null) {
-            Log.i("tag", "The uri is not exist.");
-        }
-
-        tempUri = uri;
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(uri, "image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 150);
-        intent.putExtra("outputY", 150);
-        intent.putExtra("return-data", true);
-        this.startActivityForResult(intent, 2);
-    }
-
-    protected void setImageToView(Intent data) {
-        Bundle extras = data.getExtras();
-        if(extras != null) {
-            Bitmap photo = (Bitmap)extras.getParcelable("data");
-            photo = Utils.toRoundBitmap(photo, tempUri);
-            this.iv_personal_icon.setImageBitmap(photo);
-            imagePath = Utils.savePhoto(photo, Environment.getExternalStorageDirectory().getAbsolutePath(), String.valueOf(System.currentTimeMillis()));
-            this.setImageUrl(photo);
-        }
-
-    }
-
-    protected String  setImageUrl(Bitmap bitmap) {
-        String imagePath = Utils.savePhoto(bitmap, Environment.getExternalStorageDirectory().getAbsolutePath(), String.valueOf(System.currentTimeMillis()));
-
-        Log.e("imagePath", imagePath);
-
-
-        return imagePath;
-    }
-
 
     /*end*/
 
-    private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
-            return;
-        }
-
-        getLoaderManager().initLoader(0, null, this);
-    }
-
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
-    }
-
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
-        }
-    }
-
-
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
-        // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
-        // Store values at the time of the login attempt.
         final String email = mEmailView.getText().toString();
         final String password = mPasswordView.getText().toString();
-
-
         boolean cancel = false;
         View focusView = null;
-
-        // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
-
-        // Check for a valid email address.
-
 
         if(isEmailValid(email)){
             mRegistType="M";
@@ -330,9 +177,6 @@ public class RegistActivity extends AppCompatActivity implements LoaderCallbacks
                 //System.out.println(list.get(i));
             }
 
-
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
             showProgress(true);
           //  mAuthTask = new UserLoginTask(email, password,mRegistType);
             MyAsyncTask asyncTask = (MyAsyncTask) new MyAsyncTask(new MyAsyncTask.AsyncResponse() {
@@ -340,7 +184,7 @@ public class RegistActivity extends AppCompatActivity implements LoaderCallbacks
                 @Override
                 public void processFinish(HttpJson output) {
                     if (output.getStatusCode()==400) {
-                        Toast.makeText(getBaseContext(), "注册成功", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "注册成功,去补充信息吧", Toast.LENGTH_LONG).show();
                        // String thisUUid = (String) output.getClassObject();
                         //tym
                         Intent intent = new Intent(RegistActivity.this, ExRegistActivity.class);
@@ -408,7 +252,6 @@ public class RegistActivity extends AppCompatActivity implements LoaderCallbacks
                         //转换
                         json.constractJsonString();
 
-
                     } catch (IOException v) {
                         //e.printStackTrace();
                         Toast.makeText(getBaseContext(), "默认头像文件不存在", Toast.LENGTH_LONG).show();
@@ -432,8 +275,7 @@ public class RegistActivity extends AppCompatActivity implements LoaderCallbacks
 
         }
 
-           // mAuthTask.onPostExecute(true);
-           // mAuthTask.execute((Void) null);
+
         }
 ////////////////////////
 
@@ -451,21 +293,13 @@ public class RegistActivity extends AppCompatActivity implements LoaderCallbacks
     else return mobiles.matches(telRegex);
 }
 
-
-
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4&&password.length()<12;
     }
-
-    /**
-     * Shows the progress UI and hides the login form.
-     */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
@@ -487,72 +321,10 @@ public class RegistActivity extends AppCompatActivity implements LoaderCallbacks
                 }
             });
         } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
-
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
-
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
-            cursor.moveToNext();
-        }
-
-        addEmailsToAutoComplete(emails);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
-    }
-
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(RegistActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-
-        mEmailView.setAdapter(adapter);
-    }
-
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-
 
 
 
@@ -597,44 +369,8 @@ public class RegistActivity extends AppCompatActivity implements LoaderCallbacks
                 send.constractJsonString();
                 //4.发送
                 return new GetFromServer().execute(targetIP+servlet,send.getJsonString());
-
-//
-//          try {
-//               // Simulate network access.
-//               Thread.sleep(2000);
-//           } catch (InterruptedException e) {
-//               return null;//返回空
-//            }
-//            for (String credential : DUMMY_CREDENTIALS) {
-//               String[] pieces = credential.split(":");
-//               if (pieces[0].equals(mEmail)) {
-//                    // Account exists, return true if the password matches.
-//                    return pieces[1].equals(mPassword);
-//               }
-//            }
-//
-//           // TODO: register the new account here.
- //           return true;
         }
 
-       // @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-//
-//        @Override
-//        protected void onCancelled() {
-//            mAuthTask = null;
-//            showProgress(false);
-//        }
    }
     }
 

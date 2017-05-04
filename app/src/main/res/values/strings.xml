@@ -21,6 +21,16 @@
     </string>
     <string name="icon_user">&#xeade;</string>
     <string name="icon_password">&#xead0;</string>
+    <string name="icon_brithday">&#xead8;</string>
+    <string name="icon_male">&#xead1;</string>
+    <string name="icon_female">&#xeace;</string>
+    <string name="icon_nickeName">&#xeacf;</string>
+    <string name="icon_signature">&#xead2;</string>
+    <string name="icon_del">&#xead4;</string>
+    <string name="icon_calender">&#xead3;</string>
+    <string name="icon_phone">&#xead9;</string>
+    <string name="icon_email">&#xeadf;</string>
+
     <string name="title_activity_main">MainActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

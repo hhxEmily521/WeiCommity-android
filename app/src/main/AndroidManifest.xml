@@ -83,10 +83,10 @@
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <activity
+           <activity
         android:name=".Activity.ExRegistActivity"
         android:label="@string/title_activity_ex_regist"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-    </application>
+</application>
 
 </manifest>

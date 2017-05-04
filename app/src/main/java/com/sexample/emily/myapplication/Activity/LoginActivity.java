@@ -84,7 +84,7 @@ public class LoginActivity extends Activity {
 
 
         btn_register.setOnClickListener(new View.OnClickListener() {
-            @Override
+                @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(LoginActivity.this,ExRegistActivity.class);
