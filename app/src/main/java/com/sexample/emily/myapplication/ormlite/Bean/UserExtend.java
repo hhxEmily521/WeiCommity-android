@@ -29,6 +29,17 @@ public class UserExtend {
     private String USign;
     @DatabaseField
     private String UHeadImg;
+    @DatabaseField(defaultValue = "0")
+    private String UAccStatus = "0";
+
+    public String getUAccStatus() {
+        return UAccStatus;
+    }
+
+    public void setUAccStatus(String UAccStatus) {
+        this.UAccStatus = UAccStatus;
+    }
+
     //外部类，外键。以主键关联
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     public Login user;
@@ -106,6 +117,14 @@ public class UserExtend {
 
     public void setUHeadImg(String UHeadImg) {
         this.UHeadImg = UHeadImg;
+    }
+
+    public void setFriendIteam(String UUuid, String ImageUrl, String UNackName, String sign) {
+        this.UUuid = UUuid;
+        this.UHeadImg = ImageUrl;
+        this.USign = sign;
+        this.UNackName = UNackName;
+
     }
 
 }

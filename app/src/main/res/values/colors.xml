@@ -5,8 +5,12 @@
     <color name="colorAccent">#FF4081</color>
     <color name="gray">#D4D4D4</color>
     <color name="frenchgray">#E5E5E5</color>
+    <color name="MYwhite">#FFFFFF</color>
     <color name="red">#ff0000</color>
     <color name="blue">#3875d6</color>
     <color name="green">#8af19b</color>
+    <color name="WordGray">#a3a3a3</color>
+    <color name="bluegreen">#0198CA</color>
+
 
 </resources>

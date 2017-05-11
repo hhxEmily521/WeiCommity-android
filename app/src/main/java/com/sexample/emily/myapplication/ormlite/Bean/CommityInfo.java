@@ -1,21 +1,48 @@
 package com.sexample.emily.myapplication.ormlite.Bean;
 
-import org.threeten.bp.LocalDate;
+
+import org.joda.time.DateTime;
+
+
 /**
+ * 社团信息实体，用于存常用需要的舒团信息
  * Created by uryuo on 17/5/1.
  */
 
 public class CommityInfo {
-    private String Cid;
-    private String CNAame;
-    private LocalDate CCreateTime;
-    private String Cintroduce;
+    private String Cid;//
+    private String CName;//
+    private DateTime CCreateTime;
+    private String Cintroduce;//
     private String CTag;
-    private String CHeadImg;
+    private String CHeadImg;//
     private int CIsNMin;
     private String CNMDemand;
     private int CMeMCount;
     private String CNotice;
+    private String CImgObj;
+    private DateTime CNoteCTime;
+
+
+    public void setCommityItem(String CName) {
+        this.CName = CName;
+    }
+
+    public DateTime getCNoteCTime() {
+        return CNoteCTime;
+    }
+
+    public void setCNoteCTime(DateTime CNoteCTime) {
+        this.CNoteCTime = CNoteCTime;
+    }
+
+    public String getCImgObj() {
+        return CImgObj;
+    }
+
+    public void setCImgObj(String CImgObj) {
+        this.CImgObj = CImgObj;
+    }
 
     public String getCid() {
         return Cid;
@@ -25,19 +52,19 @@ public class CommityInfo {
         Cid = cid;
     }
 
-    public String getCNAame() {
-        return CNAame;
+    public String getCName() {
+        return CName;
     }
 
-    public void setCNAame(String CNAame) {
-        this.CNAame = CNAame;
+    public void setCName(String CNAame) {
+        this.CName = CNAame;
     }
 
-    public LocalDate getCCreateTime() {
+    public DateTime getCCreateTime() {
         return CCreateTime;
     }
 
-    public void setCCreateTime(LocalDate CCreateTime) {
+    public void setCCreateTime(DateTime CCreateTime) {
         this.CCreateTime = CCreateTime;
     }
 

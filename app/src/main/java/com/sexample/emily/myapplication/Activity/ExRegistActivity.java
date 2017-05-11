@@ -1,31 +1,23 @@
 package com.sexample.emily.myapplication.Activity;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
-import android.provider.DocumentsContract;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.TabLayout;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.text.TextUtils;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -36,17 +28,14 @@ import android.widget.Toast;
 import com.sexample.emily.myapplication.R;
 import com.sexample.emily.myapplication.Util.GetFromServer;
 import com.sexample.emily.myapplication.Util.HttpJson;
-import com.sexample.emily.myapplication.ormlite.dao.UserDao;
-
 import com.sexample.emily.myapplication.Util.MyAsyncTask;
-import com.sexample.emily.myapplication.ormlite.Bean.Login;
+import com.sexample.emily.myapplication.Util.showChoosePic;
+
 import org.apache.commons.io.FileUtils;
+import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 public class ExRegistActivity extends AppCompatActivity {
 
@@ -67,6 +56,9 @@ public class ExRegistActivity extends AppCompatActivity {
     private int mYear;
     private int mMonth;
     private int mDay;
+    private String imagePath;
+    public showChoosePic choosePic = new showChoosePic(this, ExRegistActivity.this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,53 +150,192 @@ public class ExRegistActivity extends AppCompatActivity {
             }
            if(getArguments().getInt(ARG_SECTION_NUMBER) == 2)
            {
-
+               //页面初始化
                View rootView = inflater.inflate(R.layout.fragment_sub_regist_normal, container, false);
+               TextView tv_nickName = (TextView) rootView.findViewById(R.id.tv_nickname);
+               TextView tv_sex = (TextView) rootView.findViewById(R.id.write_sex);
+               TextView tv_birth = (TextView) rootView.findViewById(R.id.tv_brithday);
+               TextView tv_signature = (TextView) rootView.findViewById(R.id.tv_signature);
                RadioButton radioButton_boy,radioButton_girl;
                RadioGroup radioGroup=(RadioGroup)rootView.findViewById(R.id.radioGroup_sex_id);
                radioButton_boy=(RadioButton)rootView.findViewById(R.id.boy_id);
                radioButton_girl=(RadioButton)rootView.findViewById(R.id.girl_id);
+               Button btn_submit = (Button) rootView.findViewById(R.id.btn_submitbaseIfo);
+               ImageButton ChoosePic = (ImageButton) rootView.findViewById(R.id.iv_personal_icon);
+               ExRegistActivity thisActivity = (ExRegistActivity) getActivity();
+
+
+               //日期监听事件
                DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                       String msg = year + "-" + monthOfYear + "-" + dayOfMonth;
-                       Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
-                       // updateDisplay();
+                       String msg = year + "-" + monthOfYear++ + "-" + dayOfMonth;
+                       tv_birth.setText(msg);
+                       if (year + monthOfYear + "" != null)
+                           btn_submit.setText("提交我的基本信息");
                    }
                };
-
+               //性别单选按钮监听事件
                RadioGroup.OnCheckedChangeListener listen=new RadioGroup.OnCheckedChangeListener() {
                    @Override
                    public void onCheckedChanged(RadioGroup group, int checkedId) {
                        int id=	group.getCheckedRadioButtonId();
                        switch (group.getCheckedRadioButtonId()) {
                            case R.id.girl_id:
-                               Toast.makeText(getActivity(), radioButton_girl.getText(), Toast.LENGTH_SHORT).show();
+                               tv_sex.setText("女");
+                               btn_submit.setText(R.string.btn_submitBaseIfo);
                                break;
                            case R.id.boy_id:
-                               Toast.makeText(getActivity(), radioButton_boy.getText(), Toast.LENGTH_SHORT).show();
+                               tv_sex.setText("男");
+                               btn_submit.setText(R.string.btn_submitBaseIfo);
                                break;
                        }
 
                    }
                };
+               //性别单选按钮监听事件
                radioGroup.setOnCheckedChangeListener(listen);
+               //生日datepicker监听事件
                rootView.findViewById(R.id.tv_brithday).setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-                   new DatePickerDialog(getActivity(),mDateSetListener,1990, 5, 4).show();
+                   new DatePickerDialog(getActivity(), mDateSetListener, 1990, 6, 6).show();
 
                }
            });
-               rootView.findViewById(R.id.btn_submitbaseIfo).setOnClickListener(new View.OnClickListener() {
+               //相机选照片
+               ChoosePic.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
-                       Intent intent = new Intent(getActivity(), MainActivity.class);
-//                        intent.putExtra("email", email);
-//                        intent.putExtra("thisUUid", thisUUid);
-                       startActivity(intent);
+
+                       btn_submit.setText(R.string.btn_submitBaseIfo);
+                       thisActivity.choosePic.showChoosePicDialog();
+                       thisActivity.choosePic.setIv_personal_icon(ChoosePic);
 
                    }
                });
+
+
+               //提交数据
+               rootView.findViewById(R.id.btn_submitbaseIfo).setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+
+
+                       tv_nickName.setError(null);
+                       tv_signature.setError(null);
+                       //数据获取
+                       boolean pass = true;
+
+                       String nickName = tv_nickName.getText().toString(); //昵称
+                       String gender = tv_sex.getText().toString();//性别
+                       String brithday = tv_birth.getText().toString(); //生日
+                       String sign = tv_signature.getText().toString();//个性签名
+                       // boolean FormIsEmpty=false;
+                       if (nickName.length() > 10) {
+                           pass = false;
+                           tv_nickName.setError("昵称请在10字以内");
+                       }
+
+                       if (sign.length() > 30) {
+                           pass = false;
+                           tv_signature.setError("个性签名请在30字以内");
+                       }
+                       if (pass) {
+                           if (thisActivity.imagePath == null && nickName == null && gender == "保密" && brithday == null && sign == null) {
+                               MyAsyncTask SubmitbseIfo = (MyAsyncTask) new MyAsyncTask(new MyAsyncTask.AsyncResponse() {
+                                   @Override
+                                   public void processFinish(HttpJson output) {
+                                       if (output.getStatusCode() == 400) {
+                                           Toast.makeText(getActivity(), "注册成功,去补充信息吧", Toast.LENGTH_LONG).show();
+                                           // String thisUUid = (String) output.getClassObject();
+                                           //tym
+                                           Intent intent = new Intent(getActivity(), MainActivity.class);
+//                        intent.putExtra("email", email);
+//                        intent.putExtra("thisUUid", thisUUid);
+                                           startActivity(intent);
+
+                                       } else {
+//                                              Context mContext =getContext();
+//                                               AlertDialog.Builder builder=new AlertDialog.Builder(mContext);//AlertDialog有两个版本support V7.app兼容包，23支持新的6.0版如果增加了新的控件，如果想在4.0也用那个控件那么就用这个支持低版本
+//                                               builder.setTitle("注册失败")//构建器模式，当new一个string view对象都需要构造器。设置的属性很多的时候会比较方便。比较灵活
+//
+//                                                       .setMessage(output.getMessage())
+//                                                       .setPositiveButton("确认"+getResources().getString(R.string.Connection), new DialogInterface.OnClickListener() {
+//                                                           @Override
+//                                                           public void onClick(DialogInterface dialog, int which) {
+//                                                               dialog.dismiss();
+//                                                           }
+//                                                       });
+//                                               AlertDialog dialog=builder.create();
+//                                               dialog.show();
+                                           // showProgress(false);
+
+                                       }
+
+
+                                   }
+                               }) {
+                                   @Override
+                                   protected Object doInBackground(Object... params) {
+                                       //0.请求的servlet地址的构造
+                                       String targetIP = getResources().getString(R.string.Connection);
+                                       //   String servlet = "regist/common";第一步
+                                       String servlet = "regist/uextend";
+                                       //1.装配 从testView获取值
+                                       HttpJson json = new HttpJson();
+                                       //2.封装
+                                       try {
+                                           json.setPara("UHeadImg", thisActivity.imagePath);
+
+                                           File re = new File(thisActivity.imagePath);
+                                           //传 文件时一定要用ISO-8859-1"
+                                           String send1 = null;
+                                           send1 = FileUtils.readFileToString(re, "ISO-8859-1");
+                                           json.setClassObject(send1);
+                                           // json.setPara("username", nickName);
+                                           json.setClassName("String[ISO-8859-1]:regist-userExtend");
+                                           //json.setPara("password", password);
+                                           //json.setPara("style", mRegistType);
+                                           json.setPara("UUuid", "c015ea85-6701-4b7c-afae-860b39f59c8d");
+                                           json.setPara("UBirthday", brithday);
+                                           json.setPara("UNackName", nickName);
+                                           json.setPara("USex", gender);
+                                           json.setPara("sign", sign);
+                                           //转换
+                                           json.constractJsonString();
+                                       } catch (JSONException e) {
+                                           e.printStackTrace();
+                                       } catch (IOException e) {
+                                           e.printStackTrace();
+                                       }
+
+//
+                        /*end*/
+
+                                       //3.转换
+
+                                       //4.发送
+                                       return new GetFromServer().execute(targetIP + servlet, json.getJsonString());
+                                   }
+                               }.execute();
+
+
+                           }
+
+
+                           Intent intent = new Intent(getActivity(), MainActivity.class);
+//                        intent.putExtra("email", email);
+//                        intent.putExtra("thisUUid", thisUUid);
+                           startActivity(intent);
+
+                       } else {
+
+                       }
+
+
+                   }
+               });
+
 
 
                return rootView;
@@ -218,18 +349,12 @@ public class ExRegistActivity extends AppCompatActivity {
 
     }
 
-
-//    @RequiresApi(api = Build.VERSION_CODES.N)
-//    private void showDatePickerDialog() {
-//        DatePickerDialog datePickerDialog = new DatePickerDialog(ExRegistActivity.this,this,2017,5,4);
-//        datePickerDialog.show();
-//    }
-//
-//    // 回调监听实现
-//    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//        String msg = year + "-" + monthOfYear + "-" + dayOfMonth;
-//        Toast.makeText(ExRegistActivity.this, msg, Toast.LENGTH_LONG).show();
-//    }
+    //调用照片 以及获得保存的照片路径
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //调用照片 以及获得保存的照片路径
+        super.onActivityResult(requestCode, resultCode, data);
+        imagePath = choosePic.onActivityResult(requestCode, resultCode, data);
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

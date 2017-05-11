@@ -1,15 +1,9 @@
 package com.sexample.emily.myapplication.Activity;
 
-import android.app.ActionBar;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Handler;
-import android.view.View;
-import android.widget.Button;
 
 import com.sexample.emily.myapplication.R;
-
 import com.sexample.emily.myapplication.base.BaseActivity;
 
 /**
@@ -35,8 +29,12 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(SplashActivity.this, CommityMainActivity.class);
+//                startActivity(intent);
+                startActivity(new Intent(SplashActivity.this, CommityMainActivity.class));
+                // startActivity(new Intent(SplashActivity.this, ExRegistActivity.class));
+                // LoginActivity_.intent(SplashActivity.this).start();
+
                 finish();
 //                PackageManager pm = getPackageManager();
 //                pm.setComponentEnabledSetting(getComponentName(),

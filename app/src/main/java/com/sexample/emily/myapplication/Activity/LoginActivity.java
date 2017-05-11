@@ -4,40 +4,43 @@ package com.sexample.emily.myapplication.Activity;
  * Created by Emily on 2017/4/16.
  */
 
-        import java.io.ByteArrayOutputStream;
-        import java.io.InputStream;
-        import java.io.OutputStream;
-        import java.net.HttpURLConnection;
-        import java.net.URL;
-        import java.net.URLEncoder;
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import android.app.Activity;
-        import android.content.Context;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.support.v7.app.AlertDialog;
-        import android.text.TextUtils;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import com.sexample.emily.myapplication.R;
+import com.sexample.emily.myapplication.Util.FileUtil;
+import com.sexample.emily.myapplication.Util.GetFromServer;
+import com.sexample.emily.myapplication.Util.HttpJson;
+import com.sexample.emily.myapplication.Util.MyAsyncTask;
 
-        import com.sexample.emily.myapplication.R;
-        import com.sexample.emily.myapplication.Util.GetFromServer;
-        import com.sexample.emily.myapplication.Util.HttpJson;
-        import com.sexample.emily.myapplication.Util.MyAsyncTask;
+import org.androidannotations.annotations.EActivity;
+import org.json.JSONException;
 
-        import org.json.JSONException;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 
+@EActivity
 public class LoginActivity extends Activity {
     // 声明控件对象
     private EditText et_name, et_pass;
     // 声明显示返回数据库的控件对象
     private TextView tv_result;
      Button btn_login ,btn_register;
-    private HttpURLConnection client;
+    private FileUtil OpenFiles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +77,8 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-
-            login(v);
+                FileUtil.getSpecificTypeOfFile(LoginActivity.this, new String[]{".doc", ".apk"});
+                //  login(v);
 
 
             }
@@ -89,7 +92,7 @@ public class LoginActivity extends Activity {
                 Intent intent=new Intent();
                 intent.setClass(LoginActivity.this,ExRegistActivity.class);
                 startActivity(intent);
-                finish();
+
 
             }
 
@@ -136,7 +139,7 @@ public class LoginActivity extends Activity {
                                 e.printStackTrace();
                             }
 
-                        };
+                        }
                     }.start();
                 }
                 break;

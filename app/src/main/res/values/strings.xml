@@ -30,6 +30,8 @@
     <string name="icon_calender">&#xead3;</string>
     <string name="icon_phone">&#xead9;</string>
     <string name="icon_email">&#xeadf;</string>
+    <string name="icon_setting">&#xead6;</string>
+
 
     <string name="title_activity_main">MainActivity</string>
 
@@ -41,6 +43,25 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_submitBaseIfo">提交我的个人信息</string>
+    <string name="btn_defulBaseIfo">我想以后再填</string>
+    <string name="sign_personal_hint">来个我的个性签名吧</string>
+    <string name="sponsor">策划</string>
+    <string name="signer">歌手</string>
+    <string name="lyric">词作</string>
+    <string name="compose">曲作</string>
+    <string name="arrangement">编曲</string>
+    <string name="postProduction">后期</string>
+    <string name="artDesigner">美工</string>
+    <string name="Wword">题词</string>
+    <string name="painter">画师</string>
+    <string name="Complete">成功</string>
+    <string name="Error">出错</string>
+    <string name="Upload">上传</string>
+    <string name="regist_welcome">注册社团</string>
+    <string name="orginal_textsize">15dp</string>
+    <string name="useable">可用</string>
+    <string name="isCNUseable">检查社团名</string>
 
 
 </resources>

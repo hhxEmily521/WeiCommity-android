@@ -1,9 +1,9 @@
 package com.sexample.emily.myapplication.ormlite.Bean;
 
-import java.util.UUID;
-
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import java.util.UUID;
 /**
  * Created by emily on 17/4/25.
  */
@@ -20,8 +20,6 @@ public class Login {
    private String UTel;
     @DatabaseField
    private String UMail;
-    @DatabaseField(defaultValue="0")
-   private String UAccStatus = "0";
 
 
     public void RegistWithFlag(String UPwd, String registName,String flag) {
@@ -77,14 +75,6 @@ public class Login {
 
     public void setUMail(String UMail) {
         this.UMail = UMail;
-    }
-
-    public String getUAccStatus() {
-        return UAccStatus;
-    }
-
-    public void setUAccStatus(String UAccStatus) {
-        this.UAccStatus = UAccStatus;
     }
 
 

@@ -1,10 +1,5 @@
 package com.sexample.emily.myapplication.Util;
 
-import android.app.Activity;
-import android.widget.TextView;
-
-import com.sexample.emily.myapplication.R;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,11 +12,11 @@ import java.net.URL;
  */
 
 public class GetFromServer {
-    private  String method = "POST";
-    private  HttpURLConnection client;
-    private URL url;
+    private static String method = "POST";
+    private static HttpURLConnection client;
+    private static URL url;
 
-    public HttpJson execute(String urlString,String jsonString,String method){
+    public static HttpJson execute(String urlString, String jsonString, String method) {
         HttpJson re = new HttpJson();
         try{
             url = new URL(urlString);
@@ -29,8 +24,8 @@ public class GetFromServer {
             client.setDoOutput(true);
             client.setDoInput(true);
             client.setRequestProperty("Content-Type","application/json; charset=UTF-8");
-            this.method = method;
-            client.setRequestMethod(this.method);
+            GetFromServer.method = method;
+            client.setRequestMethod(GetFromServer.method);
             client.connect();
 
             OutputStreamWriter writer = new OutputStreamWriter(client.getOutputStream());
@@ -60,8 +55,8 @@ public class GetFromServer {
 
     }
 
-    public HttpJson execute(String urlString, String jsonString){
-        return this.execute(urlString,jsonString,"POST");
+    public static HttpJson execute(String urlString, String jsonString) {
+        return GetFromServer.execute(urlString, jsonString, "POST");
     }
 
 
