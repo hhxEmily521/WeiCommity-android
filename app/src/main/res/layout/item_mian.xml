@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="20dp"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_round_rect"
+        android:layout_gravity="center">
+        <TextView
+            android:id="@+id/tv_apply_nv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="通用类"
+            android:textColor="#9b92b3" />
+        <Button
+            android:id="@+id/btn_snsor_nv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_columnSpan="3"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/sponsor"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_project_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/lyric"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_plan_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/Wword"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_notice_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/arrangement"
+            android:textColor="#9b92b3" />
+
+    </GridLayout>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="20dp"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_round_rect"
+        android:layout_gravity="center">
+        <TextView
+            android:id="@+id/tv_test_nv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="工作类~"
+            android:textColor="#9b92b3" />
+        <Button
+            android:id="@+id/btn_sponsor_nv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_columnSpan="3"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/sponsor"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_lyric_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/lyric"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_Wword_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/Wword"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_arrangement_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/arrangement"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_artDesigner_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/artDesigner"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_compose_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="#9b92b3"
+            android:text="@string/compose" />
+
+        <Button
+            android:id="@+id/btn_painter_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/painter"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_postProduction_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/postProduction"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_null_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="待定"
+            android:textColor="#9b92b3" />
+    </GridLayout>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="20dp"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_round_rect"
+        android:layout_gravity="center">
+        <TextView
+            android:id="@+id/tv_other_nv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="其他"
+            android:textColor="#9b92b3" />
+        <Button
+            android:id="@+id/btn_help_nv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="帮助"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_introduce_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/lyric"
+            android:textColor="#9b92b3" />
+
+        <Button
+            android:id="@+id/btn_customerServiceCenter_nv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_task_module"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/Wword"
+            android:textColor="#9b92b3" />
+
+
+    </GridLayout>
+
+
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_commity_note_manage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bluegreen"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <ImageView
+                    android:id="@id/iv_personal_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/default_personal_image" />
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1">
+
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:padding="6dp"
+                    android:background="@color/MYwhite">
+
+                    <com.sexample.emily.myapplication.base.IconFontTextView
+                        android:layout_width="26dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:background="@color/bluegreen"
+                        android:padding="3dp"
+                        android:text="@string/icon_nickeName"
+                        android:textColor="@color/MYwhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:text="昵称："
+                        android:textSize="15dp" />
+
+                    <EditText
+                        android:id="@+id/edit_nickeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:textSize="15dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:padding="6dp"
+                    android:background="@color/MYwhite">
+
+                    <com.sexample.emily.myapplication.base.IconFontTextView
+                        android:layout_width="26dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:background="@color/bluegreen"
+                        android:padding="3dp"
+                        android:text="@string/icon_male"
+                        android:textColor="@color/MYwhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:text="性别："
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/tv_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:background="@null"
+                        android:layout_margin="5dp"
+                        android:clickable="true"
+                        android:textSize="15dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:padding="6dp"
+                    android:background="@color/MYwhite">
+
+                    <com.sexample.emily.myapplication.base.IconFontTextView
+                        android:layout_width="26dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:background="@color/bluegreen"
+                        android:padding="3dp"
+                        android:text="@string/icon_brithday"
+                        android:textColor="@color/MYwhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:text="生日："
+                        android:textSize="15dp" />
+
+                    <EditText
+                        android:id="@+id/edit_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:editable="false"
+                        android:textSize="15dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:padding="6dp"
+                    android:background="@color/MYwhite">
+
+                    <com.sexample.emily.myapplication.base.IconFontTextView
+                        android:layout_width="26dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:background="@color/bluegreen"
+                        android:padding="3dp"
+                        android:text="@string/icon_phone"
+                        android:textColor="@color/MYwhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:text="手机："
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/edit_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:textSize="15dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:padding="6dp"
+                    android:background="@color/MYwhite">
+
+                    <com.sexample.emily.myapplication.base.IconFontTextView
+                        android:layout_width="26dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:background="@color/bluegreen"
+                        android:padding="3dp"
+                        android:text="@string/icon_email"
+                        android:textColor="@color/MYwhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:text="邮箱："
+                        android:textSize="15dp" />
+
+                    <EditText
+                        android:id="@+id/edit_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:textSize="15dp" />
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:padding="6dp"
+                    android:background="@color/MYwhite">
+
+                    <com.sexample.emily.myapplication.base.IconFontTextView
+                        android:layout_width="26dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:background="@color/bluegreen"
+                        android:padding="3dp"
+                        android:text="@string/icon_setting"
+                        android:textColor="@color/MYwhite"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:text="设置"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/tv_setting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:textSize="15dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginTop="5dp"
+                    android:padding="6dp"
+                    android:background="@color/MYwhite">
+
+                    <com.sexample.emily.myapplication.base.IconFontTextView
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:padding="6dp"
+                        android:text="@string/icon_signature"
+                        android:textColor="#050505"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_margin="5dp"
+                        android:text="签名："
+                        android:textSize="15dp" />
+
+                    <EditText
+                        android:id="@+id/edit_sign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:background="@null"
+                        android:ems="15"
+                        android:enabled="false"
+                        android:gravity="top|left"
+                        android:minLines="3"
+                        android:textSize="15dp" />
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_userInfeditable"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/backgroud"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/button_shape_normal"
+                    android:text="编辑"
+                    android:layout_weight="1"
+                    android:textColor="@color/MYwhite" />
+
+                <com.dd.CircularProgressButton
+                    android:id="@+id/btn_userInfupdate"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/MYwhite"
+                    android:textSize="13sp"
+                    app:cpb_cornerRadius="5dp"
+                    app:cpb_textComplete="@string/Complete"
+                    app:cpb_textError="@string/Error"
+                    app:cpb_textIdle="@string/Upload" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
